@@ -1,3 +1,15 @@
-<p>
-  story-feed works!
-</p>
+<div id="navigator" *ngIf="!grabbingFeed">
+  <span [routerLink]="['/topstories']" [queryParams]="{ p: prevPage() }">&lsaquo;</span>
+  &#8239;
+  <span>{{page}}</span>
+  <span>/</span>
+  <span>{{totalPages}}</span>
+  &#8239;
+  <span [routerLink]="['/topstories']" [queryParams]="{ p: nextPage() }">&rsaquo;</span>
+</div>
+<div id="spinner-hn" *ngIf="grabbingFeed"></div>
+<ul *ngIf="!grabbingFeed">
+  <li *ngFor="let item of feed; let i = index;">
+    {{page*50-49+i}}. {{item.id}}
+  </li>
+</ul>
