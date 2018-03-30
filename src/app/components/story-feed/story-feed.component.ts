@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { HackernewsApiService } from '../../services/hackernews-api.service';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { switchMap, map } from 'rxjs/operators';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-story-feed',
@@ -10,28 +11,42 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class StoryFeedComponent implements OnInit {
   private subscription: any;
-  private grabbingFeed: boolean
-  private page: number;
-  private feedType: string;
-  private feed: Array<string>;
-  private totalPages: number;
-  constructor(private _api: HackernewsApiService,
+  public grabbingFeed: boolean;
+  public pagination: boolean;
+  public page: number;
+  public feedType: string;
+  public feed: Array<string>;
+  public totalPages: number;
+  constructor(private cdRef: ChangeDetectorRef,
+              private _api: HackernewsApiService,
               private route: ActivatedRoute,
               private router: Router) { }
 
   ngOnInit() {
     this.grabbingFeed = true;
     this.feedType = this.route.snapshot.data.feed;
-    this.page = +this.route.snapshot.queryParamMap.params.p || 1;
-    this.subscription = this._api.getFeedItemInRange(this.feedType, this.page*50-49, this.page*50)
-                            .subscribe(
-                              data => {
-                                this.feed = data.itemsList;
-                                this.totalPages = parseInt(data.feedCount)%50;
-                                this.grabbingFeed = false;
-                              },
-                              error => console.log(error)
-                            );
+    this.pagination = false;
+    this.subscription 
+            = this.route.queryParams
+              .pipe(switchMap(params => {
+                this.grabbingFeed = true;
+                this.page = +params.p || 1;
+                return this._api.getFeedItemInRange(this.feedType, this.page*30-29, this.page*30);
+              }))
+              .pipe(map(data => {
+                data.itemsList.forEach(item => item.time = moment.unix(item.time).fromNow());
+                return data;
+              }))
+              .subscribe(
+                data => {
+                  this.feed = data.itemsList;
+                  this.totalPages = Math.floor((data.feedCount+29)/30);
+                  this.pagination = true;
+                  this.grabbingFeed = false;
+                  this.cdRef.detectChanges();
+                },
+                error => console.log(error)
+              );
   }
 
   ngOnDestroy() {
@@ -39,10 +54,18 @@ export class StoryFeedComponent implements OnInit {
   }
 
   nextPage() {
-    return Math.min(this.totalPages, this.page+1);
+    this.router.navigate([`/${this.feedType}`], {
+      queryParams: {
+        p:  Math.min(this.totalPages, this.page+1)
+      }
+    });
   }
 
   prevPage() {
-    return Math.max(1, this.page-1);
+        this.router.navigate([`/${this.feedType}`], {
+      queryParams: {
+        p:  Math.max(1, this.page-1)
+      }
+    });
   }
 }

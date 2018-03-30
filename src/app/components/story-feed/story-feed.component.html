@@ -1,15 +1,23 @@
-<div id="navigator" *ngIf="!grabbingFeed">
-  <span [routerLink]="['/topstories']" [queryParams]="{ p: prevPage() }">&lsaquo;</span>
-  &#8239;
+<div id="navigator" *ngIf="pagination">
+  <span (click)="prevPage()"><i class="fas fa-arrow-left"></i></span>
+  &#8239;&#8239;
   <span>{{page}}</span>
   <span>/</span>
   <span>{{totalPages}}</span>
-  &#8239;
-  <span [routerLink]="['/topstories']" [queryParams]="{ p: nextPage() }">&rsaquo;</span>
+  &#8239;&#8239;
+  <span (click)="nextPage()"><i class="fas fa-arrow-right"></i></span>
 </div>
 <div id="spinner-hn" *ngIf="grabbingFeed"></div>
 <ul *ngIf="!grabbingFeed">
   <li *ngFor="let item of feed; let i = index;">
-    {{page*50-49+i}}. {{item.id}}
+    <app-story-feed-item
+      [index]="page*30-29+i"
+      [id]="item.id"
+      [title]="item.title"
+      [url]="item.url"
+      [score]="item.score" 
+      [by]="item.by" 
+      [time]="item.time" 
+      [commentsCount]="item.kids ? item.kids.length : 0"></app-story-feed-item>
   </li>
 </ul>

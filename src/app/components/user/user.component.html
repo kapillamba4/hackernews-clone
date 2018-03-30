@@ -1,0 +1,16 @@
+<div id="user-wrapper" *ngIf="userData">
+    <h1>User: {{userData.id}}</h1>
+    <div>Created: {{userData.created}}</div>
+    <div>Karma: {{userData.karma}}</div>
+    <br/>
+    <div id="user-about" *ngIf="userData.about">{{userData.about}}</div>
+    <br/>
+    <div>
+        <span id="user-submissions" (click)="openExternalUrl('submitted')">submissions</span> | 
+        <span id="user-comments" (click)="openExternalUrl('threads')">comments</span> |
+        <span id="user-favorites" (click)="openExternalUrl('favorites')">favorites</span> 
+    </div>    
+</div>
+
+<div id="user-wrapper" *ngIf="!userData">
+</div>

@@ -1,3 +1,5 @@
-<p>
-  story-feed-item works!
-</p>
+<div>
+  <div (click)="openUrl()">{{index}}. {{title}} <small class="domainName" *ngIf="domain">({{domain}})</small></div>
+  <span>{{ws}}</span>
+  <small>{{score}} points by <span class="feed-item-username" [routerLink]="['/user', by]">{{by}}</span> | {{time}} | <span class="feed-item-comments-count" [routerLink]="['/item', id]">{{commentsCount}} comments</span></small>
+</div>

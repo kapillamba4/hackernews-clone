@@ -3,4 +3,16 @@
     height: 40px;
     display: flex;
     justify-content: center;
+    margin-top: 20px;
+    #maintainer, #licence {
+        &:hover {
+            // font-family: italic;
+            color: grey;
+            text-decoration: none;
+        }
+        &:active {
+            color: black;
+            text-decoration: none;
+        }
+    }
 }

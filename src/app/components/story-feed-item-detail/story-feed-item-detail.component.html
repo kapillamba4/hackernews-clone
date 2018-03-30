@@ -1,0 +1,18 @@
+<div id="story-item-detail-wrapper">
+  <div id="story-item-detail-header" *ngIf="feedItemFetched">
+    <h3>{{title}}</h3>
+    <small *ngIf="url"><a [href]="url">({{url}})</a></small>
+    <pre id="story-item-details"[innerHTML]="text"></pre>
+    <small>{{score}} points by <span [routerLink]="['/user', by]">{{by}}</span> | {{time}}</small>
+  </div>
+  <div id="story-item-detail-content">
+    <ul>
+      <li *ngFor="let comment of kids; let i = index;">
+        <app-collapsible-list 
+            [level]="0"
+            [id]="comment">
+        </app-collapsible-list>
+      </li>
+    </ul>
+  </div>
+</div>
