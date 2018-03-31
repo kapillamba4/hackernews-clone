@@ -9,27 +9,26 @@ import * as moment from 'moment';
 })
 export class CollapsibleListComponent implements OnInit {
   @Input() level: number;
-  @Input() id: number
+  @Input() id: number;
   public by: string;
   public kids: string[];
   public text: string;
   public time: string;
   public isActivated: boolean;
   public hasCommentTree: boolean;
-  constructor(private _api: HackernewsApiService) { }
+  constructor(private _api: HackernewsApiService) {}
 
   ngOnInit() {
     this.isActivated = false;
     this.hasCommentTree = false;
-    this._api.getCommentTree(this.id)
-              .subscribe(
-                data => {
-                  Object.assign(this, data);
-                  this.time = moment.unix(+this.time).fromNow();
-                  this.hasCommentTree = true;
-                },
-                error => console.log(error)
-              );
+    this._api.getCommentTree(this.id).subscribe(
+      data => {
+        Object.assign(this, data);
+        this.time = moment.unix(+this.time).fromNow();
+        this.hasCommentTree = true;
+      },
+      error => console.log(error)
+    );
   }
 
   toggleActivate() {

@@ -26,13 +26,8 @@ import { CollapsibleListComponent } from './components/collapsible-list/collapsi
     UserComponent,
     CollapsibleListComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    HttpModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, HttpModule],
   providers: [HackernewsApiService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

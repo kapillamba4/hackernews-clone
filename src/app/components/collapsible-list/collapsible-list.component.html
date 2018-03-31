@@ -1,17 +1,18 @@
 <ul>
   <div class="comment-wrapper">
     <div class="comment-header" *ngIf="hasCommentTree">
-      <span *ngIf="(!isActivated && !!kids && !!kids.length)" (click)="toggleActivate()">[<i class="fas fa-plus"></i>]</span>
-      <span *ngIf="(isActivated && !!kids && !!kids.length)" (click)="toggleActivate()">[<i class="fas fa-minus"></i>]</span>
+      <span *ngIf="(!isActivated && !!kids && !!kids.length)" (click)="toggleActivate()">
+        [<i class="fas fa-plus"></i>]</span>
+      <span *ngIf="(isActivated && !!kids && !!kids.length)" 
+      (click)="toggleActivate()">
+        [<i class="fas fa-minus"></i>]</span>
       <span class="comment-username" [routerLink]="['/user', by]">{{by}}</span>, {{time}}
     </div>
     <pre class="comment-text" [innerHTML]="text"></pre>
   </div>
   <ng-container *ngIf="isActivated">
     <li *ngFor="let comment of kids; let i = index;">
-      <app-collapsible-list 
-        [level]="level"
-        [id]="comment">
+      <app-collapsible-list [level]="level" [id]="comment">
       </app-collapsible-list>
     </li>
   </ng-container>

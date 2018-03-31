@@ -1,12 +1,14 @@
 $ghost-white: rgb(239, 239, 247);
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
-ng, body, html {
-    margin: 0;
-    background-color: $ghost-white;
-    font-family: 'Roboto', sans-serif;
+ng,
+body,
+html {
+  margin: 0;
+  background-color: $ghost-white;
+  font-family: 'Roboto', sans-serif;
 }
 
 body {
-    overflow-y:scroll;
+  overflow-y: scroll;
 }

@@ -1,6 +1,7 @@
-.feed-item-username, .feed-item-comments-count {
-    text-decoration: underline;
-    &:hover {
-        text-decoration: none;
-    }
+.feed-item-username,
+.feed-item-comments-count {
+  text-decoration: underline;
+  &:hover {
+    text-decoration: none;
+  }
 }

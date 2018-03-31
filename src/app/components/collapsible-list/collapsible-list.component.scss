@@ -1,22 +1,22 @@
 $light-grey: rgb(211, 211, 211);
 .comment-wrapper {
-    border-bottom: 1px solid $light-grey;
+  border-bottom: 1px solid $light-grey;
 }
 .comment-header {
-    font-weight: bold;
+  font-weight: bold;
 }
-ul { 
-    padding: 8px;
-    list-style: none;
-    margin-left: 16px;
+ul {
+  padding: 8px;
+  list-style: none;
+  margin-left: 16px;
 }
 .comment-text {
-    white-space: pre-wrap;
-    word-wrap: break-word;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 .comment-username {
-    text-decoration: underline;
-    &:hover {
-        text-decoration: none;
-    }
+  text-decoration: underline;
+  &:hover {
+    text-decoration: none;
+  }
 }
