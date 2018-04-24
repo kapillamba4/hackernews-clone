@@ -44,6 +44,10 @@ $vivid-red: rgb(226, 50, 55);
   background-position: center center;
   box-shadow: 0 0 4px 4px $red-blend inset;
 }
+a{
+  color: #FFFFFF;
+  text-decoration: none;
+}
 
 @media only screen and (max-width: 600px) {
   #header-right {
