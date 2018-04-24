@@ -4,7 +4,7 @@
   </div>
   <span>{{ws}}</span>
   <small>{{score}} points by
-    <a class="feed-item-username" [routerLink]="['/user', by]">{{by}}</a> | {{time}} |
-    <a class="feed-item-comments-count" [routerLink]="['/item', id]">{{commentsCount}} comments</a>
+    <a class="feed-item-username" [routerLink]="['/user', by]" routerLinkActive="active">{{by}}</a> | {{time}} |
+    <a class="feed-item-comments-count" [routerLink]="['/item', id]" routerLinkActive="active">{{commentsCount}} comments</a>
   </small>
 </div>
