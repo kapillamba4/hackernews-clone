@@ -26,8 +26,8 @@ export class CollapsibleListComponent implements OnInit {
     this._api.getCommentTree(this.id).subscribe(
       data => {
         Object.assign(this, data);
-        if (data['deleted']) {
-          this.removed.emit(this.id);
+        if (data && data['deleted']) {
+            this.removed.emit(this.id);
         }
         this.time = moment.unix(+this.time).fromNow();
         this.hasCommentTree = true;
