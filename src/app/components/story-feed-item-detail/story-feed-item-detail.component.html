@@ -11,7 +11,7 @@
   <div id="story-item-detail-content">
     <ul>
       <li *ngFor="let comment of kids; let i = index;">
-        <app-collapsible-list [level]="0" [id]="comment">
+        <app-collapsible-list [level]="0" [id]="comment" (removed)="onDeleted($event)">
         </app-collapsible-list>
       </li>
     </ul>
