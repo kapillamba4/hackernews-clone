@@ -8,7 +8,7 @@ import * as moment from 'moment';
   styleUrls: ['./collapsible-list.component.scss']
 })
 export class CollapsibleListComponent implements OnInit {
-  @Output() removed: EventEmitter<number> = new EventEmitter();
+  @Output() hasBeenDeleted: EventEmitter<number> = new EventEmitter();
   @Input() level: number;
   @Input() id: number;
   public by: string;
@@ -26,8 +26,8 @@ export class CollapsibleListComponent implements OnInit {
     this._api.getCommentTree(this.id).subscribe(
       data => {
         Object.assign(this, data);
-        if (data && data['deleted']) {
-            this.removed.emit(this.id);
+        if (data && data.deleted) {
+          this.hasBeenDeleted.emit(this.id);
         }
         this.time = moment.unix(+this.time).fromNow();
         this.hasCommentTree = true;
