@@ -12,7 +12,7 @@
   </div>
   <ng-container *ngIf="isActivated">
     <li *ngFor="let comment of kids; let i = index;">
-      <app-collapsible-list [level]="level" [id]="comment">
+      <app-collapsible-list [level]="level" [id]="comment" (hasBeenDeleted)="onDeleted($event)">
       </app-collapsible-list>
     </li>
   </ng-container>

@@ -36,6 +36,10 @@ export class CollapsibleListComponent implements OnInit {
     );
   }
 
+  onDeleted(comment_id: any) {
+    this.kids.splice(this.kids.indexOf(comment_id), 1);
+  }
+
   toggleActivate() {
     this.isActivated = !this.isActivated;
   }

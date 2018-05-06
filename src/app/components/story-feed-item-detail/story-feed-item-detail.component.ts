@@ -41,7 +41,7 @@ export class StoryFeedItemDetailComponent implements OnInit {
     });
   }
 
-  onDeleted(comment_id) {
+  onDeleted(comment_id: any) {
     this.kids.splice(this.kids.indexOf(comment_id), 1);
   }
 }
